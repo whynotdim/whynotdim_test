@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie d'Images</title>
+    <style>
+        body {
+            font-family: Oswald, Medium;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding-top: 80px; /* To prevent overlap with fixed header */
+            text-align: center;
+      
+        }
+
+        header {
+            width: 100%;
+            background-color: #f4f4f4;
+            padding: 0px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        header img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .colonne {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 30px;
+            width: 80vw;
+            max-width: 800px;
+        }
+
+        .colonne a {
+            text-decoration: none;
+            color: #000000;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .colonne a:hover {
+            background-color: #f4f4f4;
+        }
+
+        /* Media Query for Smartphones */
+        @media (max-width: 600px) {
+            .colonne {
+                width: 100%;
+                padding: 10px;
+            }
+        }
+
+/* Style de l'image */
+.image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .image-container img {
+            position: center;
+            top: 0;
+            left: 0;
+            width: 300px;  /* Vous pouvez ajuster la taille */
+            height: auto;
+            transition: opacity 0.3s ease-in-out;  /* Transition pour l'effet de changement */
+        }
+
+        .image-container img.second-image {
+            position: down;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Lorsque le curseur passe sur l'image */
+        .image-container:hover img.first-image {
+            opacity: 0;
+        }
+
+        .image-container:hover img.second-image {
+            opacity: 1;
+            transform: scale(1.8);
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="text-align: center;">
+            <a href="FrontPage.html" >
+                <img src="https://i.ibb.co/WN72VNb9/Logo-TTWN-Vector-CMJN.png" alt="Logo-TTWN-Vector-CMJN" border="0">
+            </a>
+        </div>
+    </header>
+    <main style="display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 30px; width: 80vw; max-width: 800px;">
+        
+        <div class="image-container">
+            <!-- Première image qui sera visible par défaut -->
+            <p style="text-align: center;">Dumb Ass.</p>
+            
+            <!-- Deuxième image qui apparaîtra lors du survol -->
+            <img src="https://i.ibb.co/6Rfr35Y4/fuck.jpg" alt="fuck" class="second-image">
+        </div>
+    </main>
+
+</body>
+</html>
+
+

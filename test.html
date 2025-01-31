@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie d'Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding-top: 80px; /* To prevent overlap with fixed header */
+        }
+
+        header {
+           
+            width: 100%;
+            background-color: #f4f4f4;
+            padding: 0px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        header img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 30px;
+            width: 80vw;
+            height: 80vw;
+            max-width: 800px;
+            max-height: 800px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, opacity 0.5s ease-in-out;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.0);
+            opacity: 0.8;
+        }
+
+        /* Modal Styling */
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #imageModal img, #imageModal video {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .modal-nav img {
+            width: 50px;
+            height: auto;
+        }
+
+        .modal-nav.prev {
+            left: 20px;
+        }
+
+        .modal-nav.next {
+            right: 20px;
+        }
+
+        /* Media Query for Smartphones */
+        @media (max-width: 600px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="text-align: center;">
+            <a href="FrontPage.html" >
+                <img src="https://i.ibb.co/WN72VNb9/Logo-TTWN-Vector-CMJN.png" alt="Logo-TTWN-Vector-CMJN" border="0">
+            </a>
+        </div>
+    </header>
+
+    <div class="gallery">
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/8nfPpFd9/IMG-4379.jpg" alt="IMG-4379" onclick="openModal(this)">
+        </div>
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/qL2YMgD1/IMG-4402.jpg" alt="IMG-4402" onclick="openModal(this)">
+        </div>
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/4Z9Nt0KV/IMG-4376.jpg" alt="IMG-4376" onclick="openModal(this)">
+        </div>
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/20H8nwTt/IMG-4401.jpg" alt="IMG-4401" onclick="openModal(this)">
+        </div>
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/8GYygv5/IMG-3929.jpg" alt="IMG-3929" onclick="openModal(this)">
+        </div>
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/6cCn3VG5/IMG-3933.jpg" alt="IMG-3933" onclick="openModal(this)">
+        </div>
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/Kp4BqsBN/IMG-3939.jpg" alt="IMG-3939" onclick="openModal(this)">
+        </div>
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/ch8n0tds/IMG-3934.jpg" alt="IMG-3934" onclick="openModal(this)">
+        </div>
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/cfXPKpP/IMG-3913.jpg" alt="IMG-3913" onclick="openModal(this)">
+        </div>
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/r24hmHr4/IMG-4100.jpg" alt="IMG-4100" onclick="openModal(this)">
+        </div>
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/k6wzxCSB/IMG-4079.jpg" alt="IMG-4079" onclick="openModal(this)">
+        </div>
+        <div style="text-align: center;">
+            <img src="https://i.ibb.co/ZzQ34fZJ/IMG-4106.jpg" alt="IMG-4106" onclick="openModal(this)">
+        </div>
+        <div style="position:relative; width:100%; height:0px; padding-bottom:75.000%">
+            <iframe allow="fullscreen" allowfullscreen height="100%" src="https://streamable.com/e/53m2pg?" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;" onclick="openModal(this)"></iframe>
+        </div>
+    </div>
+
+    <!-- Fenêtre modale -->
+    <div id="imageModal">
+        <button class="modal-nav prev" onclick="navigate(-1)">
+            <img src="https://i.ibb.co/M5ccM1J7/gun-white.png" alt="gun-white">
+        </button>
+        <img id="modalImage" src="" alt="Image en grand">
+        <video id="modalVideo" controls style="display: none;"></video>
+        <button class="modal-nav next" onclick="navigate(1)">
+            <img src="https://i.ibb.co/Z60jcv8t/Fleur-TTWN-Vector-CMJN.png" alt="Fleur-TTWN-Vector-CMJN" >
+        </button>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const items = document.querySelectorAll('.gallery img, .gallery iframe');
+
+        function openModal(element) {
+            currentIndex = Array.from(items).indexOf(element);
+            const modalImage = document.getElementById('modalImage');
+            const modalVideo = document.getElementById('modalVideo');
+
+            if (element.tagName === 'IMG') {
+                modalImage.src = element.src;
+                modalImage.style.display = 'block';
+                modalVideo.style.display = 'none';
+            } else if (element.tagName === 'IFRAME') {
+                modalVideo.src = element.src;
+                modalVideo.style.display = 'block';
+                modalImage.style.display = 'none';
+            }
+
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function navigate(direction) {
+            currentIndex = (currentIndex + direction + items.length) % items.length;
+            openModal(items[currentIndex]);
+        }
+
+        document.getElementById('imageModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
